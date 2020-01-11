@@ -1,13 +1,49 @@
 <!--Jumbotron-->
-<div class="jumbotron">
-    <h1 class="display-4">Eat-Da-Burger</h1>
-        <p class="lead">Select a burger or create one to devour later!</p>
+    <div class="jumbotron">
+        <h1 class="display-4">Eat-Da-Burger</h1>
+            <p class="lead">Select a burger or create one to devour later!</p>
 
-    <hr class="my-4">
+        <hr class="my-4">
 
-    <p>Words</p>
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-</div>
+        <h2>Let's Make A Burger!</h2>
+        <!-- Form -->
+        <form>
+            <div class="form-group">
+                <label for="burger-name">Create A New Burger</label>
+                <input type="text" class="form-control" id="new-burger" aria-describedby="new-burger">
+            </div>
+            <button type="submit" class="btn btn-primary" id="add-burger">Add Burger</button>
+        </form>
+    </div>
+
+<!-- Undevoured Burgers -->
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading" id="lefthead"><strong>New Burgers</strong></div>
+                <div class="panel-body">
+                    <ul>
+                        {{#each burger}}
+                            {{#unless devoured}}
+                                {{> burger/burger-block devoured=false}}
+                            {{/unless}}
+                        {{/each}}
+                    </ul>
+
+
+                        {{#each burgers}}
+                            {{#unless devoured}}
+                                <span><strong> {{this.id}} - {{this.burgers_name}} </strong></span>
+                                <button type="button" class="eatburger btn btn-warning" id ="eatbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}"><span class="fa fa-cutlery"></span></button>
+                                <hr>
+                            {{/unless}}
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 <ul>
