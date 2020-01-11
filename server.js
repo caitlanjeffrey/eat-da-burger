@@ -1,26 +1,29 @@
-const express = require("express")
-const expressHandlebars = require("express-handlebars")
-const mysql = require("mysql")
+var express = require("express");
 
-const app = express()
+var PORT = process.env.PORT || 8080;
 
-// const apiRoutes = require("./app/routes/apiRoutes")
-// const htmlRoutes = require("./app/routes/htmlRoutes")
+var app = express();
 
+// Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static("public"));
 
-// port listener
-const PORT = process.env.PORT || 8080
+// Parse application body
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-// setting up express server
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+// Set Handlebars.
+var exphbs = require("express-handlebars");
 
-//allows sending of additional files through the 'public folders'
-app.use(express.static("./app/public"))
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
-// apiRoutes(app)
-// htmlRoutes(app)
+// Import routes and give the server access to them.
+var routes = require("./controllers/burgers_controller");
 
+app.use(routes);
+
+// Start our server so that it can begin listening to client requests.
 app.listen(PORT, function() {
-    console.log("App listening on PORT: " + PORT);
+    // Log (server-side) when our server has started
+    console.log("Server listening on: http://localhost:" + PORT);
 });
