@@ -4,4 +4,5 @@ INSERT INTO burgers (burger_name)
         ("Cheeseburger"),
         ("Bacon Avocado Burger"),
         ("Santa Maria Tri-Tip Burger"),
-        ("Republican Nothing Burger (which is a real burger)")
+        ("Republican Nothing Burger"),
+        ("Bob's Burger")
