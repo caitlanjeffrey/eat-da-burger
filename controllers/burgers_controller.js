@@ -1,42 +1,43 @@
-
+console.log("controller uploaded")
 var express = require("express");
 var burger = require("../models/burger");
 var router = express.Router();
 
 router.get("/", function (req, res) {
+    console.log("GET")
     burger.all(function (data) {
         const dburg = data.filter(x => x.devour === 1);
         const notdburg = data.filter(x => x.devour === 0);
-        console.log(dburg);
-        console.log(notdburg);
+        //console.log(dburg);
+       // console.log(notdburg);
         res.render("index", {
-            burgers: notdburg,
-            devouredBurgers: dburg
+            burgers: data,
+            // devouredBurgers: dburg
         });
     })
 });
 
 router.post("/api/burger", function (req, res) {
-    console.log(req.body.burger);
-    burger.add(["burger"], [req.body.burger], function (data) {
-        res.json(data);
+    console.log(req.body.burger_name);
+
+    res.json(data);
     })
 });
 
 router.put("/api/burger/:id", function (req, res) {
 
     var condition = "id = " + req.params.id;
-
+    console.log("PUT", condition)
     burger.update(
         {
-            devour: req.body.devour
+            devoured: true
         },
-        req.params.id,
+        condition,
         function (data) {
-            var burgerObj = {
-                burger: data
-            }
-            res.status(200).send(burgerObj).end();
+            // var burgerObj = {
+            //     burger: data
+            // }
+            res.status(200).end();
         })
 })
 

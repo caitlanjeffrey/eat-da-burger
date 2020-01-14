@@ -25,7 +25,7 @@
                     <div class="panel-heading" id="lefthead"><strong>New Burgers</strong></div>
                     <div class="panel-body">
                         <ul>
-                            {{#each burger}}
+                            {{#each burgers}}
                                 {{#unless devoured}}
                                     {{this.burger_name}} 
                                     {{> burger/burger-block devoured=false}}
@@ -42,7 +42,7 @@
                     <div class="panel-heading" id="lefthead"><strong>Devoured Burgers</strong></div>
                     <div class="panel-body">
                         <ul>
-                            {{#each burger}}
+                            {{#each burgers}}
                                 {{#if devoured}}
                                     {{this.burger_name}} 
                                     {{> burger/burger-block devoured=true}}
@@ -54,43 +54,3 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // Make sure we wait to attach our handlers until the DOM is fully loaded.
-$(function() {
-    $(".change-devoured").on("click", function(event) {
-        event.preventDefault()
-        console.log("hi")
-
-        let id = $(this).data("id")
-        let devouredState = {
-            devoured: 1
-        }
-
-        $.ajax("/api/burgers/" + id, {
-            type: "PUT",
-            data: devouredState
-        }).then(function() {
-            console.log("Burger devoured")
-            location.reload();
-        })
-    })
-
-    $("#add-burger").on("click", function(event) {
-        event.preventDefault()
-
-        let newBurger = {
-            name: $("#new-burger").val().trim(),
-            devoured: 0
-        }
-
-        $.ajax("/api/burgers", {
-            type: "POST",
-            data: newBurger
-        }).then(function() {
-            console.log("Added new burger!")
-            location.reload()
-        })
-    })
-})
-    </script>

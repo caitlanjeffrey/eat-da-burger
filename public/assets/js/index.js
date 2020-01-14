@@ -1,19 +1,21 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
+console.log("javacript loaded")
 $(function() {
     $(".change-devoured").on("click", function(event) {
         event.preventDefault()
-        console.log("hi")
+  
 
         var id = $(this).data("id")
+        console.log("hi",id)
         var devouredState = {
             devoured: 1
         }
 
-        $.ajax("/api/burgers/" + id, {
+        $.ajax("/api/burger/" + id, {
             type: "PUT",
             data: devouredState
-        }).then(function() {
-            console.log("Burger devoured", devoured)
+        }).then(function(result) {
+            console.log("Burger devoured", result)
             location.reload();
         })
     })
@@ -27,7 +29,7 @@ $(function() {
 
         console.log(newBurger)
         
-        $.ajax("/api/burgers", {
+        $.ajax("/api/burger", {
             type: "POST",
             data: newBurger
         }).then(function() {
