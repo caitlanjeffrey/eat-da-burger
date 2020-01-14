@@ -4,9 +4,7 @@ var connection;
 
 if (process.env.JAWSDB_URL) {
     connection = msql.createConnection(process.env / JAWSDB_URL)
-}
-else {
-
+} else {
     connection = mysql.createConnection({
         host: "localhost",
         port: 3306,
@@ -15,7 +13,6 @@ else {
         database: "eat_burger"
     });
 }
-
 
 // Make connection.
 connection.connect(function (err) {

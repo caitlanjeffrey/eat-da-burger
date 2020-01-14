@@ -3,10 +3,8 @@ console.log("javacript loaded")
 $(function() {
     $(".change-devoured").on("click", function(event) {
         event.preventDefault()
-  
 
         var id = $(this).data("id")
-        console.log("hi",id)
         var devouredState = {
             devoured: 1
         }
