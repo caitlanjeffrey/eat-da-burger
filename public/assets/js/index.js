@@ -4,8 +4,8 @@ $(function() {
         event.preventDefault()
         console.log("hi")
 
-        const id = $(this).data("id")
-        const devouredState = {
+        var id = $(this).data("id")
+        var devouredState = {
             devoured: 1
         }
 
@@ -13,7 +13,7 @@ $(function() {
             type: "PUT",
             data: devouredState
         }).then(function() {
-            console.log("Burger devoured")
+            console.log("Burger devoured", devoured)
             location.reload();
         })
     })
@@ -21,11 +21,12 @@ $(function() {
     $("#add-burger").on("click", function(event) {
         event.preventDefault()
 
-        const newBurger = {
-            name: $("#new-burger").val().trim(),
-            devoured: 0
+        var newBurger = {
+            burger_name: $("#new-burger").val().trim().toString()
         }
 
+        console.log(newBurger)
+        
         $.ajax("/api/burgers", {
             type: "POST",
             data: newBurger
