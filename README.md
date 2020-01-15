@@ -1,4 +1,5 @@
-![Bob's Burger](../public/assets/img/bobs-burger.jpg)
+![BOBS-Burger](/public/assets/img/bobs-burger.jpg)
+
 # EAT-DA-BURGER Express App:
 Welcome to 'Eat-Da-Burger' Restaurant! We serve Cheeseburgers, Hamburgers and even Republican Nothing Burgers!
 
